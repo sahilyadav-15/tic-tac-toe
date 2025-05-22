@@ -4,6 +4,7 @@ import Player from "./components/Player";
 import GameBoard from "./components/GameBoard";
 import Log from "./components/Log";
 import { WINNING_COMBINATIONS } from "./winningCombinations";
+import GameOver from "./GameOver";
 
 const initialGameBoard = [
   [null, null, null],
@@ -15,7 +16,7 @@ function App() {
   const [gameTurns, setGameTurns] = useState([]);
   const activePlayer = gameTurns.length % 2 === 0 ? "X" : "O";
 
-  let gameBoard = initialGameBoard;
+  let gameBoard = [...initialGameBoard.map((innerArray) => [...innerArray])];
 
   for (const turn of gameTurns) {
     const { square, player } = turn;
@@ -39,11 +40,10 @@ function App() {
       firstSquareSymbol === thirdSquareSymbol
     ) {
       winner = firstSquareSymbol;
-      console.log(winner);
     }
   }
 
-
+  const isDraw = gameTurns.length === 9 && !winner;
 
   function handleSelectedSquare(rowIndex, colIndex) {
     setGameTurns((prevTurns) => {
@@ -61,10 +61,17 @@ function App() {
     });
   }
 
+  function handleRematch() {
+    console.log(true);
+    setGameTurns([]);
+  }
+
   return (
     <main>
       <div id="game-container">
-        {winner && <p>You won {winner}!</p>}
+        {(winner || isDraw) && (
+          <GameOver winner={winner} onRematch={handleRematch} />
+        )}
         <ol id="players" className="highlight-player">
           <Player
             pName="Player 1"
