@@ -43,8 +43,6 @@ function App() {
     }
   }
 
-
-
   function handleSelectedSquare(rowIndex, colIndex) {
     setGameTurns((prevTurns) => {
       let currentPlayer = "X";
@@ -64,7 +62,6 @@ function App() {
   return (
     <main>
       <div id="game-container">
-        {winner && <p>You won {winner}!</p>}
         <ol id="players" className="highlight-player">
           <Player
             pName="Player 1"
@@ -77,6 +74,7 @@ function App() {
             isActive={activePlayer === "O"}
           />
         </ol>
+        {winner && <p>You won {winner}!</p>}
         <GameBoard onSelectSquare={handleSelectedSquare} board={gameBoard} />
       </div>
       <Log turns={gameTurns} />
