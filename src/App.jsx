@@ -62,7 +62,6 @@ function App() {
   }
 
   function handleRematch() {
-    console.log(true);
     setGameTurns([]);
   }
 

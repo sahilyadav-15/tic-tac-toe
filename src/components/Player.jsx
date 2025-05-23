@@ -10,7 +10,6 @@ export default function Player({ pName, pSymbol, isActive }) {
 
   function handleChange(e) {
     setPlayerNaming(e.target.value);
-    console.log(e.target.value);
   }
 
   let playerName = <span className="player-name">{playerNaming}</span>;
