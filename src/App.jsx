@@ -18,8 +18,10 @@ function App() {
     O: "Player 2",
   });
   const [gameTurns, setGameTurns] = useState([]);
-  const activePlayer = gameTurns.length % 2 === 0 ? "X" : "O";
 
+  // const [nextGame, setNextGame] = useState(true)
+
+  const activePlayer = gameTurns.length % 2 === 0 ? "X" : "O";
   let gameBoard = [...initialGameBoard.map((innerArray) => [...innerArray])];
 
   for (const turn of gameTurns) {
@@ -67,6 +69,7 @@ function App() {
 
   function handleRematch() {
     setGameTurns([]);
+    setNextGame((prev) => !prev);
   }
 
   function handlePlayerNameChange(symbol, newName) {
